@@ -3,8 +3,6 @@
  * @author Ciao_hoanG
  */
 
-import jeudilemme.Partie;
-
 public class PartieFrame1 extends javax.swing.JFrame {
 
     public PartieFrame1() {

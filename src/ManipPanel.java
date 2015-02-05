@@ -88,29 +88,36 @@ public class ManipPanel extends javax.swing.JPanel implements Observer {
         int resultatEnregistrer = choix.showDialog(choix, approve);
         if(resultatEnregistrer == JFileChooser.APPROVE_OPTION){
             File f = choix.getSelectedFile();
-            FileOutputStream fos = null;
             try {
+                /*
+                FileOutputStream fos = null;
+                try {
                 fos = new FileOutputStream(f);
-            } catch (FileNotFoundException ex) {
+                } catch (FileNotFoundException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ObjectOutputStream oos = null;
-            try {
+                }
+                ObjectOutputStream oos = null;
+                try {
                 oos = new ObjectOutputStream(fos);
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
+                }
+                try {
                 oos.writeObject(partie);
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
+                }
+                try {
                 oos.close();
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+                partie.serialiser(f);
+            } catch (IOException ex) {
+                Logger.getLogger(ManipPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }      
+        }  
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -119,41 +126,49 @@ public class ManipPanel extends javax.swing.JPanel implements Observer {
         String approve = new String("Importer");
         int resultatEnregistrer = choix.showDialog(choix, approve);
         if(resultatEnregistrer == JFileChooser.APPROVE_OPTION){
-            File file = choix.getSelectedFile();
-            FileInputStream fileIn = null;
+            File f = choix.getSelectedFile();
             try {
+                partie.deserialiser(f);
+                /*    FileInputStream fileIn = null;
+                try {
                 fileIn = new FileInputStream(file);
-            } catch (FileNotFoundException ex) {
+                } catch (FileNotFoundException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ObjectInputStream in = null;
-            try {
+                }
+                ObjectInputStream in = null;
+                try {
                 in = new ObjectInputStream(fileIn);
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
+                }
+                try {
                 partie = (Partie) in.readObject();
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+                } catch (ClassNotFoundException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
+                }
+                try {
                 in.close();
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
+                }
+                try {
                 fileIn.close();
-            } catch (IOException ex) {
+                } catch (IOException ex) {
                 Logger.getLogger(PartieFrame1.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+            } catch (IOException ex) {
+                Logger.getLogger(ManipPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ManipPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        partie.choix.clear();
+        partie.reinit();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
